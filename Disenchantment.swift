@@ -10,14 +10,14 @@ class Character {
         self.strong = strong
         
         switch weapon {
-            case WeaponEnum.sword:
-                self.weapon = Weapon(weaponName: "Epée", weaponType: ArenaType.basic, weaponPower: 0)
-            case WeaponEnum.ax:
-                self.weapon = Weapon(weaponName: "Hache", weaponType: ArenaType.basic, weaponPower: 0)
-            case WeaponEnum.wand:
-                self.weapon = Weapon(weaponName: "Baguette Magique", weaponType: ArenaType.basic, weaponPower: 0)
-            case WeaponEnum.none:
-                self.weapon = Weapon(weaponName: "Mains nues", weaponType: ArenaType.basic, weaponPower: 0)
+        case WeaponEnum.sword:
+            self.weapon = Weapon(weaponName: "Epée", weaponType: ArenaType.basic, weaponPower: 0)
+        case WeaponEnum.ax:
+            self.weapon = Weapon(weaponName: "Hache", weaponType: ArenaType.basic, weaponPower: 0)
+        case WeaponEnum.wand:
+            self.weapon = Weapon(weaponName: "Baguette Magique", weaponType: ArenaType.basic, weaponPower: 0)
+        case WeaponEnum.none:
+            self.weapon = Weapon(weaponName: "Mains nues", weaponType: ArenaType.basic, weaponPower: 0)
         }
         
     }
@@ -90,15 +90,6 @@ class Dward : Character {
     
 }
 
-
-var jonathan = Colossus(name: "Jonathan")
-var charles = Dward(name: "Charles")
-var yohann = Magus(name: "Yohann")
-jonathan.attack(opponent: charles)
-charles.life
-yohann.treat(teammate: charles)
-charles.life
-charles.weapon.name
 
 print("Les Règles sont les suivantes");
 print("Le joueur numéro 1 va tout d'abord choisir un nom d'équipe. Une fois cela fait il va choisir le type de personnage qu'il souhaite avoir dans son équipe. Chaque équipe doit se constituer de 3 personnages. Pas de restriction quant aux personnage.")
