@@ -1,3 +1,16 @@
+class Team {
+    let name: String
+    let teammate1: Character?
+    let teammate2: Character?
+    let teammate3: Character?
+    
+    init (teamName: String){
+        self.name = teamName
+    }
+
+}
+
+
 class Character {
     let name: String
     var life: Int
@@ -27,28 +40,6 @@ class Character {
         let message = "\(self.name) a attaqué \(opponent.name) et lui a ôté \(self.strong) points de vie. Il lui reste à présent \(opponent.life)"
         return message
     }
-}
-
-enum ArenaType {
-    case fire, water, plant, basic
-}
-
-class Weapon {
-    let name: String
-    let type: ArenaType
-    let power: Int
-    
-    init(weaponName: String, weaponType: ArenaType, weaponPower: Int) {
-        self.name = weaponName
-        self.type = weaponType
-        self.power = weaponPower
-    }
-    
-    
-}
-
-enum WeaponEnum {
-    case sword, ax, wand, none
 }
 
 class Fighter : Character {
@@ -91,9 +82,35 @@ class Dward : Character {
 }
 
 
+enum ArenaType {
+    case fire, water, plant, basic
+}
+
+class Weapon {
+    let name: String
+    let type: ArenaType
+    let power: Int
+    
+    init(weaponName: String, weaponType: ArenaType, weaponPower: Int) {
+        self.name = weaponName
+        self.type = weaponType
+        self.power = weaponPower
+    }
+    
+    
+}
+
+enum WeaponEnum {
+    case sword, ax, wand, none
+}
+
+
+
 print("Les Règles sont les suivantes");
 print("Le joueur numéro 1 va tout d'abord choisir un nom d'équipe. Une fois cela fait il va choisir le type de personnage qu'il souhaite avoir dans son équipe. Chaque équipe doit se constituer de 3 personnages. Pas de restriction quant aux personnage.")
 print("Personnage 1 quel est le nom de votre équipe ?")
+
+
 
 if let name = readLine() {
     print("Bonjour \(name)")
