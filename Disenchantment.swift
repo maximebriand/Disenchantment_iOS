@@ -14,7 +14,8 @@ class Team {
         print("Le Colosse, est certe lent et peu puissant, mais il est capable de resister à toutes les attaques sans broncher.")
         print("Le Nain, cet être est aussi petit qu'il est raleur, mais ne le sous-estimé pas, un coup de hache bien placé et votre vie pourrait être mise à mal.")
         
-        for _ in 0...2 { //depends of number of teammates, might be changed by a parameters set with the init.
+        //TODO: check if the name is already used.
+        for _ in 0...2 { //depends of number of teammates, might be changed by a parameter set with the init.
             let characterType = self.selectCharacter()
             print("Quel va être le nom de votre \(characterType) ?")
             var teammate: Character?
@@ -42,17 +43,23 @@ class Team {
     
     func selectCharacter() -> CharacterEnum {
         print("Parmi le Combattant, le Mage, le Colosse et le Nain qui souhaitez vous choisir ?")
+        print("Quel personnage souhaitez vous choisir ?"
+            + "\n1. le Combattant"
+            + "\n2. le Mage"
+            + "\n3. le Colosse"
+            + "\n4. le Nain"
+        )
         var characterType: CharacterEnum?
         
         if let characterChoise = readLine() {
-            switch characterChoise.lowercased() {
-            case "combattant":
+            switch characterChoise {
+            case "1":
                 characterType = CharacterEnum.Fighter
-            case "mage":
+            case "2":
                 characterType = CharacterEnum.Magus
-            case "colosse":
+            case "3":
                 characterType = CharacterEnum.Colossus
-            case "nain":
+            case "4":
                 characterType = CharacterEnum.Dward
             default:
                 characterType = selectCharacter()
