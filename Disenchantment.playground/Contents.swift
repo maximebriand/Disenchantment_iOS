@@ -1,3 +1,73 @@
+class Team {
+    var name: String?
+    var teammate1: Character!
+    var teammate2: Character!
+    var teammate3: Character!
+    
+    init(teamNumber: Int) {
+        print("Personnage \(teamNumber) quel est le nom de votre équipe ?")
+        
+        var teammatesList = [Character]()
+        self.name = readLine()!
+        print("Le Combattant est un attaquant classique, avec son épée il saura terrasser chacun de ses adversaire.")
+        print("Le mage est pacificiste, il saura soigner presque toutes les blessures de ses compagnons d'armes.")
+        print("Le Colosse, est certe lent et peu puissant, mais il est capable de resister à toutes les attaques sans broncher.")
+        print("Le Nain, cet être est aussi petit qu'il est raleur, mais ne le sous-estimé pas, un coup de hache bien placé et votre vie pourrait être mise à mal.")
+        
+        for _ in 0...0 {
+            let characterType = self.selectCharacter()
+            print("Quel va être le nom de votre \(characterType) ?")
+            var teammate: Character?
+            if let teammateName = readLine() {
+                switch characterType {
+                case .Fighter:
+                    teammate = Fighter(name: teammateName)
+                case .Magus:
+                    teammate = Magus(name: teammateName)
+                case .Colossus:
+                    teammate = Colossus(name: teammateName)
+                case .Dward:
+                    teammate = Dward(name: teammateName)
+                }
+            }
+            
+            teammatesList.append(teammate!)
+            
+        }
+        self.teammate1 = teammatesList[0]
+        self.teammate2 = teammatesList[1]
+        self.teammate3 = teammatesList[2]
+        
+    }
+    
+    func selectCharacter() -> CharacterEnum {
+        print("Parmi le Combattant, le Mage, le Colosse et le Nain qui souhaitez vous choisir ?")
+        var characterType: CharacterEnum?
+        
+        if let characterChoise = readLine() {
+            switch characterChoise.lowercased() {
+            case "combattant":
+                characterType = CharacterEnum.Fighter
+            case "mage":
+                characterType = CharacterEnum.Magus
+            case "colosse":
+                characterType = CharacterEnum.Colossus
+            case "nain":
+                characterType = CharacterEnum.Dward
+            default:
+                characterType = selectCharacter()
+                return characterType!
+            }
+            return characterType!
+        }
+        
+        return characterType!
+    }
+    
+    
+}
+
+
 class Character {
     let name: String
     var life: Int
@@ -10,14 +80,14 @@ class Character {
         self.strong = strong
         
         switch weapon {
-            case WeaponEnum.sword:
-                self.weapon = Weapon(weaponName: "Epée", weaponType: ArenaType.basic, weaponPower: 0)
-            case WeaponEnum.ax:
-                self.weapon = Weapon(weaponName: "Hache", weaponType: ArenaType.basic, weaponPower: 0)
-            case WeaponEnum.wand:
-                self.weapon = Weapon(weaponName: "Baguette Magique", weaponType: ArenaType.basic, weaponPower: 0)
-            case WeaponEnum.none:
-                self.weapon = Weapon(weaponName: "Mains nues", weaponType: ArenaType.basic, weaponPower: 0)
+        case WeaponEnum.sword:
+            self.weapon = Weapon(weaponName: "Epée", weaponType: ArenaType.basic, weaponPower: 0)
+        case WeaponEnum.ax:
+            self.weapon = Weapon(weaponName: "Hache", weaponType: ArenaType.basic, weaponPower: 0)
+        case WeaponEnum.wand:
+            self.weapon = Weapon(weaponName: "Baguette Magique", weaponType: ArenaType.basic, weaponPower: 0)
+        case WeaponEnum.none:
+            self.weapon = Weapon(weaponName: "Mains nues", weaponType: ArenaType.basic, weaponPower: 0)
         }
         
     }
@@ -27,28 +97,6 @@ class Character {
         let message = "\(self.name) a attaqué \(opponent.name) et lui a ôté \(self.strong) points de vie. Il lui reste à présent \(opponent.life)"
         return message
     }
-}
-
-enum ArenaType {
-    case fire, water, plant, basic
-}
-
-class Weapon {
-    let name: String
-    let type: ArenaType
-    let power: Int
-    
-    init(weaponName: String, weaponType: ArenaType, weaponPower: Int) {
-        self.name = weaponName
-        self.type = weaponType
-        self.power = weaponPower
-    }
-    
-    
-}
-
-enum WeaponEnum {
-    case sword, ax, wand, none
 }
 
 class Fighter : Character {
@@ -90,20 +138,55 @@ class Dward : Character {
     
 }
 
-
-var jonathan = Colossus(name: "Jonathan")
-var charles = Dward(name: "Charles")
-var yohann = Magus(name: "Yohann")
-jonathan.attack(opponent: charles)
-charles.life
-yohann.treat(teammate: charles)
-charles.life
-charles.weapon.name
-
-print("Les Règles sont les suivantes");
-print("Le joueur numéro 1 va tout d'abord choisir un nom d'équipe. Une fois cela fait il va choisir le type de personnage qu'il souhaite avoir dans son équipe. Chaque équipe doit se constituer de 3 personnages. Pas de restriction quant aux personnage.")
-print("Personnage 1 quel est le nom de votre équipe ?")
-
-if let name = readLine() {
-    print("Bonjour \(name)")
+enum CharacterEnum {
+    case Fighter, Magus, Colossus, Dward
 }
+
+enum ArenaType {
+    case fire, water, plant, basic
+}
+
+class Weapon {
+    let name: String
+    let type: ArenaType
+    let power: Int
+    
+    init(weaponName: String, weaponType: ArenaType, weaponPower: Int) {
+        self.name = weaponName
+        self.type = weaponType
+        self.power = weaponPower
+    }
+    
+    
+}
+
+enum WeaponEnum {
+    case sword, ax, wand, none
+}
+
+
+
+class Game {
+    let numberOfPlayers: Int?
+    var teamList: [Team]?
+    init(numberOfPlayers: Int) {
+        self.numberOfPlayers = numberOfPlayers
+    }
+    
+    func startGame() {
+        print("Les Règles sont les suivantes");
+        print("Le joueur numéro 1 va tout d'abord choisir un nom d'équipe. Une fois cela fait il va choisir le type de personnage qu'il souhaite avoir dans son équipe. Chaque équipe doit se constituer de 3 personnages. Pas de restriction quant aux personnage.")
+        for i in 1...self.numberOfPlayers! {
+            let team = Team(teamNumber: i)
+            teamList?.append(team)
+        }
+        print(teamList![0].name)
+    }
+}
+
+var newGame = Game(numberOfPlayers: 2)
+newGame.startGame()
+
+
+
+

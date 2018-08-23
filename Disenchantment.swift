@@ -1,13 +1,70 @@
 class Team {
-    let name: String
-    let teammate1: Character?
-    let teammate2: Character?
-    let teammate3: Character?
+    var name: String?
+    var teammate1: Character!
+    var teammate2: Character!
+    var teammate3: Character!
     
-    init (teamName: String){
-        self.name = teamName
+    init(teamNumber: Int) {
+        print("Personnage \(teamNumber) quel est le nom de votre équipe ?")
+        
+        var teammatesList = [Character]()
+        self.name = readLine()!
+        print("Le Combattant est un attaquant classique, avec son épée il saura terrasser chacun de ses adversaire.")
+        print("Le mage est pacificiste, il saura soigner presque toutes les blessures de ses compagnons d'armes.")
+        print("Le Colosse, est certe lent et peu puissant, mais il est capable de resister à toutes les attaques sans broncher.")
+        print("Le Nain, cet être est aussi petit qu'il est raleur, mais ne le sous-estimé pas, un coup de hache bien placé et votre vie pourrait être mise à mal.")
+        
+        for _ in 0...0 {
+            let characterType = self.selectCharacter()
+            print("Quel va être le nom de votre \(characterType) ?")
+            var teammate: Character?
+            if let teammateName = readLine() {
+                switch characterType {
+                case .Fighter:
+                    teammate = Fighter(name: teammateName)
+                case .Magus:
+                    teammate = Magus(name: teammateName)
+                case .Colossus:
+                    teammate = Colossus(name: teammateName)
+                case .Dward:
+                    teammate = Dward(name: teammateName)
+                }
+            }
+            
+            teammatesList.append(teammate!)
+        
+        }
+        self.teammate1 = teammatesList[0]
+        //self.teammate2 = teammatesList[1]
+        //self.teammate3 = teammatesList[2]
+        
     }
-
+    
+    func selectCharacter() -> CharacterEnum {
+        print("Parmi le Combattant, le Mage, le Colosse et le Nain qui souhaitez vous choisir ?")
+        var characterType: CharacterEnum?
+        
+        if let characterChoise = readLine() {
+            switch characterChoise.lowercased() {
+            case "combattant":
+                characterType = CharacterEnum.Fighter
+            case "mage":
+                characterType = CharacterEnum.Magus
+            case "colosse":
+                characterType = CharacterEnum.Colossus
+            case "nain":
+                characterType = CharacterEnum.Dward
+            default:
+                characterType = selectCharacter()
+                return characterType!
+            }
+            return characterType!
+        }
+        
+        return characterType!
+    }
+    
+    
 }
 
 
@@ -81,6 +138,9 @@ class Dward : Character {
     
 }
 
+enum CharacterEnum {
+    case Fighter, Magus, Colossus, Dward
+}
 
 enum ArenaType {
     case fire, water, plant, basic
@@ -106,12 +166,28 @@ enum WeaponEnum {
 
 
 
-print("Les Règles sont les suivantes");
-print("Le joueur numéro 1 va tout d'abord choisir un nom d'équipe. Une fois cela fait il va choisir le type de personnage qu'il souhaite avoir dans son équipe. Chaque équipe doit se constituer de 3 personnages. Pas de restriction quant aux personnage.")
-print("Personnage 1 quel est le nom de votre équipe ?")
-
-
-
-if let name = readLine() {
-    print("Bonjour \(name)")
+class Game {
+    let numberOfPlayers: Int?
+    var teamList: [Team]?
+    init(numberOfPlayers: Int) {
+        self.numberOfPlayers = numberOfPlayers
+    }
+    
+    func startGame() {
+        print("Les Règles sont les suivantes");
+        print("Le joueur numéro 1 va tout d'abord choisir un nom d'équipe. Une fois cela fait il va choisir le type de personnage qu'il souhaite avoir dans son équipe. Chaque équipe doit se constituer de 3 personnages. Pas de restriction quant aux personnage.")
+        for i in 1...self.numberOfPlayers! {
+            let team = Team(teamNumber: i)
+            teamList?.append(team)
+            
+        }
+        
+    }
 }
+
+var newGame = Game(numberOfPlayers: 2)
+newGame.startGame()
+
+
+
+
