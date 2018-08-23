@@ -14,7 +14,7 @@ class Team {
         print("Le Colosse, est certe lent et peu puissant, mais il est capable de resister à toutes les attaques sans broncher.")
         print("Le Nain, cet être est aussi petit qu'il est raleur, mais ne le sous-estimé pas, un coup de hache bien placé et votre vie pourrait être mise à mal.")
         
-        for _ in 0...0 {
+        for _ in 0...2 { //depends of number of teammates, might be changed by a parameters set with the init.
             let characterType = self.selectCharacter()
             print("Quel va être le nom de votre \(characterType) ?")
             var teammate: Character?
@@ -35,8 +35,8 @@ class Team {
         
         }
         self.teammate1 = teammatesList[0]
-        //self.teammate2 = teammatesList[1]
-        //self.teammate3 = teammatesList[2]
+        self.teammate2 = teammatesList[1]
+        self.teammate3 = teammatesList[2]
         
     }
     
@@ -168,7 +168,7 @@ enum WeaponEnum {
 
 class Game {
     let numberOfPlayers: Int?
-    var teamList: [Team]?
+    var teamList = [Team]()
     init(numberOfPlayers: Int) {
         self.numberOfPlayers = numberOfPlayers
     }
@@ -178,10 +178,9 @@ class Game {
         print("Le joueur numéro 1 va tout d'abord choisir un nom d'équipe. Une fois cela fait il va choisir le type de personnage qu'il souhaite avoir dans son équipe. Chaque équipe doit se constituer de 3 personnages. Pas de restriction quant aux personnage.")
         for i in 1...self.numberOfPlayers! {
             let team = Team(teamNumber: i)
-            teamList?.append(team)
+            teamList.append(team)
             
         }
-        
     }
 }
 
