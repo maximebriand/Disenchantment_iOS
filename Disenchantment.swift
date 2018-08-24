@@ -15,31 +15,11 @@ class Team {
         print("Le Colosse, est certe lent et peu puissant, mais il est capable de resister à toutes les attaques sans broncher.")
         print("Le Nain, cet être est aussi petit qu'il est raleur, mais ne le sous-estimé pas, un coup de hache bien placé et votre vie pourrait être mise à mal.")
         
-        //TODO: check if the name is already used.
+        //TODO: create a function to loop if name is already used
+        
         for _ in 0...2 { //depends of number of teammates, might be changed by a parameter set with the init.
-            let characterType = self.selectCharacter()
-            print("Quel va être le nom de votre \(characterType) ?")
             
-            
-            var teammate: Character?
-            if let teammateName = readLine() {
-                let nameAvailable = self.isNameAvailable(characterName: teammateName)
-                if nameAvailable {
-                    switch characterType {
-                    case .Fighter:
-                        teammate = Fighter(name: teammateName)
-                    case .Magus:
-                        teammate = Magus(name: teammateName)
-                    case .Colossus:
-                        teammate = Colossus(name: teammateName)
-                    case .Dward:
-                        teammate = Dward(name: teammateName)
-                    }
-                } else {
-                    print("oups")
-                }
-            }
-            
+            var teammate = self.createCharacter()
             teammatesList.append(teammate!)
         }
         self.teammate1 = teammatesList[0]
@@ -48,6 +28,31 @@ class Team {
         
     }
     
+    func createCharacter() {
+        let characterType = self.selectCharacter()
+        print("Quel va être le nom de votre \(characterType) ?")
+        
+        
+        var teammate: Character?
+        if let teammateName = readLine() {
+            let nameAvailable = self.isNameAvailable(characterName: teammateName)
+            if nameAvailable {
+                switch characterType {
+                case .Fighter:
+                    teammate = Fighter(name: teammateName)
+                case .Magus:
+                    teammate = Magus(name: teammateName)
+                case .Colossus:
+                    teammate = Colossus(name: teammateName)
+                case .Dward:
+                    teammate = Dward(name: teammateName)
+                }
+            } else {
+                self.createCharacter
+            }
+        }
+        return teammate
+    }
     func selectCharacter() -> CharacterEnum {
         print("Parmi le Combattant, le Mage, le Colosse et le Nain qui souhaitez vous choisir ?")
         print("Quel personnage souhaitez vous choisir ?"
@@ -84,7 +89,7 @@ class Team {
             for i in 0..<teammatesList.count {
                 if teammatesList[i].name == characterName {
                     nameAvailable = false
-                } 
+                }
                 print("1 \(nameAvailable)")
                 return nameAvailable
             }
