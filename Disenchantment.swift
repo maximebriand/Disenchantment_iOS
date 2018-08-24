@@ -3,11 +3,12 @@ class Team {
     var teammate1: Character!
     var teammate2: Character!
     var teammate3: Character!
+    var teammatesList = [Character]()
     
     init(teamNumber: Int) {
         print("Personnage \(teamNumber) quel est le nom de votre équipe ?")
         
-        var teammatesList = [Character]()
+        
         self.name = readLine()!
         print("Le Combattant est un attaquant classique, avec son épée il saura terrasser chacun de ses adversaire.")
         print("Le mage est pacificiste, il saura soigner presque toutes les blessures de ses compagnons d'armes.")
@@ -18,22 +19,28 @@ class Team {
         for _ in 0...2 { //depends of number of teammates, might be changed by a parameter set with the init.
             let characterType = self.selectCharacter()
             print("Quel va être le nom de votre \(characterType) ?")
+            
+            
             var teammate: Character?
             if let teammateName = readLine() {
-                switch characterType {
-                case .Fighter:
-                    teammate = Fighter(name: teammateName)
-                case .Magus:
-                    teammate = Magus(name: teammateName)
-                case .Colossus:
-                    teammate = Colossus(name: teammateName)
-                case .Dward:
-                    teammate = Dward(name: teammateName)
+                let nameAvailable = self.isNameAvailable(characterName: teammateName)
+                if nameAvailable {
+                    switch characterType {
+                    case .Fighter:
+                        teammate = Fighter(name: teammateName)
+                    case .Magus:
+                        teammate = Magus(name: teammateName)
+                    case .Colossus:
+                        teammate = Colossus(name: teammateName)
+                    case .Dward:
+                        teammate = Dward(name: teammateName)
+                    }
+                } else {
+                    print("oups")
                 }
             }
             
             teammatesList.append(teammate!)
-        
         }
         self.teammate1 = teammatesList[0]
         self.teammate2 = teammatesList[1]
@@ -69,6 +76,21 @@ class Team {
         }
         
         return characterType!
+    }
+    
+    func isNameAvailable(characterName: String) -> Bool {
+        var nameAvailable = true
+        if teammatesList.count != 0 {
+            for i in 0..<teammatesList.count {
+                if teammatesList[i].name == characterName {
+                    nameAvailable = false
+                } 
+                print("1 \(nameAvailable)")
+                return nameAvailable
+            }
+        }
+        print("2 \(nameAvailable)")
+        return nameAvailable
     }
     
     
