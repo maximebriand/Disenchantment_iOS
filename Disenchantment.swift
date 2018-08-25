@@ -10,26 +10,28 @@ class Team {
         
         
         self.name = readLine()!
-        print("Le Combattant est un attaquant classique, avec son épée il saura terrasser chacun de ses adversaire.")
-        print("Le mage est pacificiste, il saura soigner presque toutes les blessures de ses compagnons d'armes.")
-        print("Le Colosse, est certe lent et peu puissant, mais il est capable de resister à toutes les attaques sans broncher.")
-        print("Le Nain, cet être est aussi petit qu'il est raleur, mais ne le sous-estimé pas, un coup de hache bien placé et votre vie pourrait être mise à mal.")
+        print("\n  • Le Combattant est un attaquant classique, avec son épée il saura terrasser chacun de ses adversaire.")
+        print("  • Le mage est pacificiste, il saura soigner presque toutes les blessures de ses compagnons d'armes.")
+        print("  • Le Colosse, est certe lent et peu puissant, mais il est capable de resister à toutes les attaques sans broncher.")
+        print("  • Le Nain, cet être est aussi petit qu'il est raleur, mais ne le sous-estimé pas, un coup de hache bien placé et votre vie pourrait être mise à mal.\n" )
         
         //TODO: create a function to loop if name is already used
         
         for _ in 0...2 { //depends of number of teammates, might be changed by a parameter set with the init.
             
-            var teammate = self.createCharacter()
-            teammatesList.append(teammate!)
+            let characterType = self.selectCharacter()
+            let teammate = self.createCharacter(characterType: characterType)
+            self.teammatesList.append(teammate)
+            newGame.characterList.append(teammate)
         }
+        
         self.teammate1 = teammatesList[0]
         self.teammate2 = teammatesList[1]
         self.teammate3 = teammatesList[2]
         
     }
     
-    func createCharacter() {
-        let characterType = self.selectCharacter()
+    func createCharacter(characterType: CharacterEnum) -> Character {
         print("Quel va être le nom de votre \(characterType) ?")
         
         
@@ -48,15 +50,17 @@ class Team {
                     teammate = Dward(name: teammateName)
                 }
             } else {
-                self.createCharacter
+                print("Désolé ce nom est déjà utilisé, merci d'en choisir un autre")
+                teammate = self.createCharacter(characterType: characterType)
+                return teammate!
             }
         }
-        return teammate
+        return teammate!
     }
     func selectCharacter() -> CharacterEnum {
         print("Parmi le Combattant, le Mage, le Colosse et le Nain qui souhaitez vous choisir ?")
         print("Quel personnage souhaitez vous choisir ?"
-            + "\n1. le Combattant"
+            + "\n\n1. le Combattant"
             + "\n2. le Mage"
             + "\n3. le Colosse"
             + "\n4. le Nain"
@@ -82,22 +86,22 @@ class Team {
         
         return characterType!
     }
+
+    
     
     func isNameAvailable(characterName: String) -> Bool {
         var nameAvailable = true
-        if teammatesList.count != 0 {
-            for i in 0..<teammatesList.count {
-                if teammatesList[i].name == characterName {
+        print("teammates count \(newGame.characterList.count)")
+        if newGame.characterList.count != 0 {
+            for teammate in newGame.characterList {
+                if teammate.name == characterName {
                     nameAvailable = false
                 }
-                print("1 \(nameAvailable)")
                 return nameAvailable
             }
         }
-        print("2 \(nameAvailable)")
         return nameAvailable
     }
-    
     
 }
 
@@ -203,6 +207,8 @@ enum WeaponEnum {
 class Game {
     let numberOfPlayers: Int?
     var teamList = [Team]()
+    var characterList = [Character]()
+    
     init(numberOfPlayers: Int) {
         self.numberOfPlayers = numberOfPlayers
     }

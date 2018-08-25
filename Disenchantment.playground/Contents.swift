@@ -1,9 +1,10 @@
+var teammatesList = [Character]()
+
 class Team {
     var name: String?
     var teammate1: Character!
     var teammate2: Character!
     var teammate3: Character!
-    var teammatesList = [Character]()
     
     init(teamNumber: Int) {
         print("Personnage \(teamNumber) quel est le nom de votre équipe ?")
