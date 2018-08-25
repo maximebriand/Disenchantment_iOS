@@ -219,14 +219,20 @@ class Game {
         for i in 1...self.numberOfPlayers! {
             let team = Team(teamNumber: i)
             teamList.append(team)
-            
+        }
+        
+        for team in teamList {
+            while team.teammate1.life > 0 && team.teammate2.life > 0 && team.teammate3.life > 0 {
+                team.teammate1.life -= 10
+                print("un des perso n'a plus de vie !")
+            }
         }
     }
+    
+    
 }
 
 var newGame = Game(numberOfPlayers: 2)
 newGame.startGame()
-
-
 
 
