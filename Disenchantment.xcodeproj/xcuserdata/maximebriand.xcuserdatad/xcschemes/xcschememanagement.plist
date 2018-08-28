@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Disenchantment.xcscheme_^#shared#^_</key>
+		<key>jeu.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>E911B16221345FAA00076518</key>
+		<key>3019F2882089F3AF00A1C8CB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E911B16221345FAA00076518"
-               BuildableName = "Disenchantment.app"
-               BlueprintName = "Disenchantment"
+               BlueprintIdentifier = "3019F2882089F3AF00A1C8CB"
+               BuildableName = "jeu"
+               BlueprintName = "jeu"
                ReferencedContainer = "container:Disenchantment.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E911B16221345FAA00076518"
-            BuildableName = "Disenchantment.app"
-            BlueprintName = "Disenchantment"
+            BlueprintIdentifier = "3019F2882089F3AF00A1C8CB"
+            BuildableName = "jeu"
+            BlueprintName = "jeu"
             ReferencedContainer = "container:Disenchantment.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E911B16221345FAA00076518"
-            BuildableName = "Disenchantment.app"
-            BlueprintName = "Disenchantment"
+            BlueprintIdentifier = "3019F2882089F3AF00A1C8CB"
+            BuildableName = "jeu"
+            BlueprintName = "jeu"
             ReferencedContainer = "container:Disenchantment.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E911B16221345FAA00076518"
-            BuildableName = "Disenchantment.app"
-            BlueprintName = "Disenchantment"
+            BlueprintIdentifier = "3019F2882089F3AF00A1C8CB"
+            BuildableName = "jeu"
+            BlueprintName = "jeu"
             ReferencedContainer = "container:Disenchantment.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

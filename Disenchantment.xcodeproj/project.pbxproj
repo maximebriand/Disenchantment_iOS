@@ -7,27 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E971EEA621347476003679DF /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = E971EEA121347475003679DF /* Character.swift */; };
-		E971EEA721347476003679DF /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = E971EEA221347476003679DF /* Team.swift */; };
-		E971EEA821347476003679DF /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E971EEA321347476003679DF /* Weapon.swift */; };
-		E971EEA921347476003679DF /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = E971EEA421347476003679DF /* Game.swift */; };
-		E971EEAB21347543003679DF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E971EEAA21347542003679DF /* Default-568h@2x.png */; };
-		E971EEAD2134799D003679DF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E971EEAC2134799D003679DF /* main.swift */; };
+		E912DE1C21354AF900FA67D2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = E912DE1721354AF900FA67D2 /* Team.swift */; };
+		E912DE1D21354AF900FA67D2 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E912DE1821354AF900FA67D2 /* main.swift */; };
+		E912DE1E21354AF900FA67D2 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E912DE1921354AF900FA67D2 /* Weapon.swift */; };
+		E912DE1F21354AF900FA67D2 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = E912DE1A21354AF900FA67D2 /* Character.swift */; };
+		E912DE2221354B3C00FA67D2 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = E912DE2121354B3C00FA67D2 /* Game.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3019F2872089F3AF00A1C8CB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		E911B16321345FAA00076518 /* Disenchantment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Disenchantment.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E971EE9F21347475003679DF /* Disenchantment-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Disenchantment-Bridging-Header.h"; sourceTree = "<group>"; };
-		E971EEA121347475003679DF /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Character.swift; path = ../../Character.swift; sourceTree = "<group>"; };
-		E971EEA221347476003679DF /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Team.swift; path = ../../Team.swift; sourceTree = "<group>"; };
-		E971EEA321347476003679DF /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Weapon.swift; path = ../../Weapon.swift; sourceTree = "<group>"; };
-		E971EEA421347476003679DF /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Game.swift; path = ../../Game.swift; sourceTree = "<group>"; };
-		E971EEAA21347542003679DF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		E971EEAC2134799D003679DF /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = ../../main.swift; sourceTree = "<group>"; };
+		3019F2892089F3AF00A1C8CB /* jeu */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = jeu; sourceTree = BUILT_PRODUCTS_DIR; };
+		E912DE1621354AF800FA67D2 /* jeu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "jeu-Bridging-Header.h"; sourceTree = "<group>"; };
+		E912DE1721354AF900FA67D2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		E912DE1821354AF900FA67D2 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		E912DE1921354AF900FA67D2 /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
+		E912DE1A21354AF900FA67D2 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		E912DE2121354B3C00FA67D2 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E911B16021345FAA00076518 /* Frameworks */ = {
+		3019F2862089F3AF00A1C8CB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -37,32 +47,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E911B15A21345FAA00076518 = {
+		3019F2802089F3AF00A1C8CB = {
 			isa = PBXGroup;
 			children = (
-				E971EEAA21347542003679DF /* Default-568h@2x.png */,
-				E911B16521345FAA00076518 /* Disenchantment */,
-				E911B16421345FAA00076518 /* Products */,
+				E912DE1521354AB100FA67D2 /* Disenchantment */,
+				3019F28A2089F3AF00A1C8CB /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E911B16421345FAA00076518 /* Products */ = {
+		3019F28A2089F3AF00A1C8CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E911B16321345FAA00076518 /* Disenchantment.app */,
+				3019F2892089F3AF00A1C8CB /* jeu */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E911B16521345FAA00076518 /* Disenchantment */ = {
+		E912DE1521354AB100FA67D2 /* Disenchantment */ = {
 			isa = PBXGroup;
 			children = (
-				E971EEAC2134799D003679DF /* main.swift */,
-				E971EEA121347475003679DF /* Character.swift */,
-				E971EEA421347476003679DF /* Game.swift */,
-				E971EEA221347476003679DF /* Team.swift */,
-				E971EEA321347476003679DF /* Weapon.swift */,
-				E971EE9F21347475003679DF /* Disenchantment-Bridging-Header.h */,
+				E912DE2121354B3C00FA67D2 /* Game.swift */,
+				E912DE1A21354AF900FA67D2 /* Character.swift */,
+				E912DE1821354AF900FA67D2 /* main.swift */,
+				E912DE1721354AF900FA67D2 /* Team.swift */,
+				E912DE1921354AF900FA67D2 /* Weapon.swift */,
+				E912DE1621354AF800FA67D2 /* jeu-Bridging-Header.h */,
 			);
 			path = Disenchantment;
 			sourceTree = "<group>";
@@ -70,85 +79,73 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E911B16221345FAA00076518 /* Disenchantment */ = {
+		3019F2882089F3AF00A1C8CB /* jeu */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E911B17521345FB200076518 /* Build configuration list for PBXNativeTarget "Disenchantment" */;
+			buildConfigurationList = 3019F2902089F3AF00A1C8CB /* Build configuration list for PBXNativeTarget "jeu" */;
 			buildPhases = (
-				E911B15F21345FAA00076518 /* Sources */,
-				E911B16021345FAA00076518 /* Frameworks */,
-				E911B16121345FAA00076518 /* Resources */,
+				3019F2852089F3AF00A1C8CB /* Sources */,
+				3019F2862089F3AF00A1C8CB /* Frameworks */,
+				3019F2872089F3AF00A1C8CB /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Disenchantment;
-			productName = Disenchantment;
-			productReference = E911B16321345FAA00076518 /* Disenchantment.app */;
-			productType = "com.apple.product-type.application";
+			name = jeu;
+			productName = jeu;
+			productReference = 3019F2892089F3AF00A1C8CB /* jeu */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E911B15B21345FAA00076518 /* Project object */ = {
+		3019F2812089F3AF00A1C8CB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "Maxime BRIAND";
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Fabrice Conchou";
 				TargetAttributes = {
-					E911B16221345FAA00076518 = {
-						CreatedOnToolsVersion = 9.4.1;
+					3019F2882089F3AF00A1C8CB = {
+						CreatedOnToolsVersion = 9.3;
 						LastSwiftMigration = 0940;
 					};
 				};
 			};
-			buildConfigurationList = E911B15E21345FAA00076518 /* Build configuration list for PBXProject "Disenchantment" */;
+			buildConfigurationList = 3019F2842089F3AF00A1C8CB /* Build configuration list for PBXProject "Disenchantment" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
-			mainGroup = E911B15A21345FAA00076518;
-			productRefGroup = E911B16421345FAA00076518 /* Products */;
+			mainGroup = 3019F2802089F3AF00A1C8CB;
+			productRefGroup = 3019F28A2089F3AF00A1C8CB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E911B16221345FAA00076518 /* Disenchantment */,
+				3019F2882089F3AF00A1C8CB /* jeu */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		E911B16121345FAA00076518 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E971EEAB21347543003679DF /* Default-568h@2x.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		E911B15F21345FAA00076518 /* Sources */ = {
+		3019F2852089F3AF00A1C8CB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E971EEA721347476003679DF /* Team.swift in Sources */,
-				E971EEAD2134799D003679DF /* main.swift in Sources */,
-				E971EEA921347476003679DF /* Game.swift in Sources */,
-				E971EEA821347476003679DF /* Weapon.swift in Sources */,
-				E971EEA621347476003679DF /* Character.swift in Sources */,
+				E912DE1D21354AF900FA67D2 /* main.swift in Sources */,
+				E912DE2221354B3C00FA67D2 /* Game.swift in Sources */,
+				E912DE1C21354AF900FA67D2 /* Team.swift in Sources */,
+				E912DE1E21354AF900FA67D2 /* Weapon.swift in Sources */,
+				E912DE1F21354AF900FA67D2 /* Character.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		E911B17321345FB200076518 /* Debug */ = {
+		3019F28E2089F3AF00A1C8CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -180,7 +177,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -199,16 +196,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		E911B17421345FB200076518 /* Release */ = {
+		3019F28F2089F3AF00A1C8CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -240,7 +237,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -253,78 +250,69 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		E911B17621345FB200076518 /* Debug */ = {
+		3019F2912089F3AF00A1C8CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UD7N55WVH5;
-				INFOPLIST_FILE = Disenchantment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fr.maximebriand.Disenchantment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Disenchantment/Disenchantment-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Disenchantment/jeu-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		E911B17721345FB200076518 /* Release */ = {
+		3019F2922089F3AF00A1C8CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UD7N55WVH5;
-				INFOPLIST_FILE = Disenchantment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fr.maximebriand.Disenchantment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Disenchantment/Disenchantment-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Disenchantment/jeu-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E911B15E21345FAA00076518 /* Build configuration list for PBXProject "Disenchantment" */ = {
+		3019F2842089F3AF00A1C8CB /* Build configuration list for PBXProject "Disenchantment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E911B17321345FB200076518 /* Debug */,
-				E911B17421345FB200076518 /* Release */,
+				3019F28E2089F3AF00A1C8CB /* Debug */,
+				3019F28F2089F3AF00A1C8CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E911B17521345FB200076518 /* Build configuration list for PBXNativeTarget "Disenchantment" */ = {
+		3019F2902089F3AF00A1C8CB /* Build configuration list for PBXNativeTarget "jeu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E911B17621345FB200076518 /* Debug */,
-				E911B17721345FB200076518 /* Release */,
+				3019F2912089F3AF00A1C8CB /* Debug */,
+				3019F2922089F3AF00A1C8CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E911B15B21345FAA00076518 /* Project object */;
+	rootObject = 3019F2812089F3AF00A1C8CB /* Project object */;
 }
