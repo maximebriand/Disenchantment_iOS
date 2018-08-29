@@ -13,6 +13,7 @@ class Team {
     var teammate1: Character!
     var teammate2: Character!
     var teammate3: Character!
+    var hasLose = false
     
     init(teamName: String, teamNumber: Int, teammate1: Character, teammate2: Character, teammate3: Character) {
         self.name = teamName

@@ -38,7 +38,6 @@ class Game {
             
             //create the object with init
             let teamIndex = (teamNumber - 1) *  3 // use it to have a multiple of 3 because there are 3 characters in teams.
-            print("team index \(teamIndex)")
             let team = Team(
                 teamName: teamName,
                 teamNumber: teamNumber,
@@ -64,12 +63,12 @@ class Game {
             teamList.append(team)
         }
         
-        for team in teamList {
-            while team.teammate1.life > 0 && team.teammate2.life > 0 && team.teammate3.life > 0 {
-                team.teammate1.life -= 10
-                print("un des perso n'a plus de vie !")
-            }
-        }
+        //attaquer seulement avec une équipe à la fois
+        repeat {
+            print("test de combat")
+            teamList[1].hasLose = true
+        } while (!teamList[0].hasLose && !teamList[1].hasLose)
+        print("le combat est terminé l'équipe \(teamList[1].name) a gagné")
     }
     
     func isNameAvailable(characterName: String) -> Bool {
@@ -144,40 +143,35 @@ class Game {
     }
     
     
-//    
-//    func attackAction(team: Team) {
-//        print("\(team.name) à toi d'jouer, choisis un de tes personnages.")
-//        printAliveCharacter(team: team)
-//        
-//        var selectedAttacker = Character()
-//        
-//        if let attacker = readLine() {
-//            switch characterChoise {
-//            case "1":
-//                selectedCharacter = team.teammate1
-//            case "2":
-//                selectedCharacter = team.teammate2
-//            case "3":
-//                selectedCharacter = team.teammate3
-//            default:
-//                attackAction(team)
-//            }
-//        }
-//        
-//
-//
-//
-//
-//    }
-//
-//    func printAliveCharacter(team: Team) {
-//
-//        print("
-//            + "\n"
-//            + "\n1 \(team.teammate1.name"
-//            + "\n2 \(team.teammate2.name"
-//            + "\n3 \(team.teammate3.name")
-//    }
+    
+    func attackAction(team: Team) {
+        print("\(String(describing: team.name)) à toi d'jouer, choisis un de tes personnages.")
+        printAliveCharacter(team: team)
+        
+        var selectedAttacker: Character
+        
+        if let attacker = readLine() {
+            switch attacker {
+            case "1":
+                selectedAttacker = team.teammate1
+            case "2":
+                selectedAttacker = team.teammate2
+            case "3":
+                selectedAttacker = team.teammate3
+            default:
+                attackAction(team: team)
+            }
+        }
+    }
+
+    func printAliveCharacter(team: Team) {
+
+        print("\n"
+            + "\n1 \(team.teammate1.name)"
+            + "\n2 \(team.teammate2.name)"
+            + "\n3 \(team.teammate3.name)"
+        )
+    }
     
     
     
