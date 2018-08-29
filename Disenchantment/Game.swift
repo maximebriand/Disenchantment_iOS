@@ -178,10 +178,12 @@ class Game {
         var message = ""
         if (selectedAttacker!.life != 0) {
             var competitorTeamIndex = 1
-            if (team.teamNumber == 1) {competitorTeamIndex = 0}
+            print("team.teamNumber \(team.teamNumber)")
+            if (team.teamNumber == 2) {competitorTeamIndex = 0}
             
+            print("competitorTeamIndex \(competitorTeamIndex)")
             let competitorTeam = teamList[competitorTeamIndex]
-            
+
             print("Quel personnage de ton adversaire souhaites tu attaquer ?")
             
             var selectedVictim: Character!
