@@ -46,8 +46,6 @@ class Game {
                 teammate3: characterList[2 + teamIndex]
             )
             
-            self.teamList.append(team) //to add to the init
-            
             return team
         }
         
@@ -64,11 +62,21 @@ class Game {
         }
         
         //attaquer seulement avec une équipe à la fois
+        var playingTeam = 0
+        var i = 0
         repeat {
-            print("test de combat")
-            teamList[1].hasLose = true
+            
+            attackAction(team: self.teamList[playingTeam])
+
+            //change the team who will play in the next batch of the loop
+            if (playingTeam == 0) {
+                playingTeam = 1
+            } else {
+                playingTeam = 0
+            }
+            i += 1
         } while (!teamList[0].hasLose && !teamList[1].hasLose)
-        print("le combat est terminé l'équipe \(teamList[1].name) a gagné")
+        
     }
     
     func isNameAvailable(characterName: String) -> Bool {
@@ -85,6 +93,34 @@ class Game {
         return nameAvailable
     }
     
+    func createCharacter(characterType: CharacterEnum) -> Character {
+        print("Quel va être le nom de votre \(characterType) ?")
+        
+        
+        var teammate: Character?
+        if let teammateName = readLine() {
+            let nameAvailable = self.isNameAvailable(characterName: teammateName)
+            if nameAvailable {
+                switch characterType {
+                case .Fighter:
+                    teammate = Fighter(name: teammateName)
+                case .Magus:
+                    teammate = Magus(name: teammateName)
+                case .Colossus:
+                    teammate = Colossus(name: teammateName)
+                case .Dward:
+                    teammate = Dward(name: teammateName)
+                }
+            } else {
+                print("Désolé ce nom est déjà utilisé, merci d'en choisir un autre")
+                teammate = self.createCharacter(characterType: characterType)
+                return teammate!
+            }
+        }
+        return teammate!
+    }
+    
+    //complete the characters creation.
     func selectCharacter() -> CharacterEnum {
         print("Parmi le Combattant, le Mage, le Colosse et le Nain qui souhaitez vous choisir ?")
         print("Quel personnage souhaitez vous choisir ?"
@@ -115,40 +151,16 @@ class Game {
         return characterType!
     }
     
-    func createCharacter(characterType: CharacterEnum) -> Character {
-        print("Quel va être le nom de votre \(characterType) ?")
-        
-        
-        var teammate: Character?
-        if let teammateName = readLine() {
-            let nameAvailable = self.isNameAvailable(characterName: teammateName)
-            if nameAvailable {
-                switch characterType {
-                case .Fighter:
-                    teammate = Fighter(name: teammateName)
-                case .Magus:
-                    teammate = Magus(name: teammateName)
-                case .Colossus:
-                    teammate = Colossus(name: teammateName)
-                case .Dward:
-                    teammate = Dward(name: teammateName)
-                }
-            } else {
-                print("Désolé ce nom est déjà utilisé, merci d'en choisir un autre")
-                teammate = self.createCharacter(characterType: characterType)
-                return teammate!
-            }
-        }
-        return teammate!
-    }
-    
-    
     
     func attackAction(team: Team) {
-        print("\(String(describing: team.name)) à toi d'jouer, choisis un de tes personnages.")
-        printAliveCharacter(team: team)
+        print("\(team.name ?? "C'est") à toi d'jouer, choisis un de tes personnages.")
         
-        var selectedAttacker: Character
+        var selectedAttacker: Character!
+        print("\n"
+            + "\n1 \(printCharacterAvailableToAttack(team: team, index: 0))"
+            + "\n2 \(printCharacterAvailableToAttack(team: team, index: 1))"
+            + "\n3 \(printCharacterAvailableToAttack(team: team, index: 2))"
+        )
         
         if let attacker = readLine() {
             switch attacker {
@@ -162,16 +174,25 @@ class Game {
                 attackAction(team: team)
             }
         }
+        
+        if (selectedAttacker!.life != 0) {
+            print("fonction attaquer")
+        } else {
+            print("désolé le personnage n'a plus de vie merci de choisir un personne vivant")
+            attackAction(team: team)
+        }
     }
 
-    func printAliveCharacter(team: Team) {
-
-        print("\n"
-            + "\n1 \(team.teammate1.name)"
-            + "\n2 \(team.teammate2.name)"
-            + "\n3 \(team.teammate3.name)"
-        )
+    func printCharacterAvailableToAttack(team: Team, index: Int) -> String {
+        var message: String?
+        if (team.teammateList[index].life != 0) {
+            message = "\(team.teammateList[index].name) dispose de \(team.teammateList[index].strength) points d'attaque"
+        } else {
+            message = "\(team.teammateList[index].name) est mort et n'est plus disponible"
+        }
+        return message!
     }
+    
     
     
     

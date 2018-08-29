@@ -10,13 +10,14 @@ import Foundation
 class Character {
     let name: String
     var life: Int
-    var strong: Int
+    var strength: Int
     var weapon: Weapon
+    var isDead = false
     
-    init (name: String, life: Int, strong: Int, weapon: WeaponEnum){
+    init (name: String, life: Int, strength: Int, weapon: WeaponEnum){
         self.name = name
         self.life = life
-        self.strong = strong
+        self.strength = strength
         
         switch weapon {
         case WeaponEnum.sword:
@@ -32,22 +33,22 @@ class Character {
     }
     
     public func attack(opponent: Character) -> String{
-        opponent.life += self.strong
-        let message = "\(self.name) a attaqué \(opponent.name) et lui a ôté \(self.strong) points de vie. Il lui reste à présent \(opponent.life)"
+        opponent.life += self.strength
+        let message = "\(self.name) a attaqué \(opponent.name) et lui a ôté \(self.strength) points de vie. Il lui reste à présent \(opponent.life)"
         return message
     }
 }
 
 class Fighter : Character {
     init(name: String) {
-        super.init(name: name, life: 100, strong: 30, weapon: WeaponEnum.sword)
+        super.init(name: name, life: 100, strength: 30, weapon: WeaponEnum.sword)
     }
     
 }
 
 class Magus : Character {
     init(name: String) {
-        super.init(name: name, life: 70, strong: 25, weapon: WeaponEnum.wand)
+        super.init(name: name, life: 70, strength: 25, weapon: WeaponEnum.wand)
     }
     
     public override func attack(opponent: Character) -> String {
@@ -56,8 +57,8 @@ class Magus : Character {
     }
     
     public func treat(teammate: Character) -> String{
-        teammate.life += self.strong
-        let message = "\(self.name) a soigné \(teammate.name) et lui a restauré \(self.strong) points de vie. Il lui reste à présent \(teammate.life)"
+        teammate.life += self.strength
+        let message = "\(self.name) a soigné \(teammate.name) et lui a restauré \(self.strength) points de vie. Il lui reste à présent \(teammate.life)"
         return message
     }
     
@@ -65,14 +66,14 @@ class Magus : Character {
 
 class Colossus : Character {
     init(name: String) {
-        super.init(name: name, life: 300, strong: 10, weapon: WeaponEnum.none)
+        super.init(name: name, life: 300, strength: 10, weapon: WeaponEnum.none)
     }
     
 }
 
 class Dward : Character {
     init(name: String) {
-        super.init(name: name, life: 80, strong: 45, weapon: WeaponEnum.ax)
+        super.init(name: name, life: 80, strength: 45, weapon: WeaponEnum.ax)
     }
     
 }

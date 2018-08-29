@@ -13,6 +13,7 @@ class Team {
     var teammate1: Character!
     var teammate2: Character!
     var teammate3: Character!
+    var teammateList: [Character]
     var hasLose = false
     
     init(teamName: String, teamNumber: Int, teammate1: Character, teammate2: Character, teammate3: Character) {
@@ -21,6 +22,7 @@ class Team {
         self.teammate1 = teammate1
         self.teammate2 = teammate2
         self.teammate3 = teammate3
+        self.teammateList = [teammate1, teammate2, teammate3]
     }
     
   
