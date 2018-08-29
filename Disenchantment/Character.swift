@@ -33,8 +33,9 @@ class Character {
     }
     
     public func attack(opponent: Character) -> String{
-        opponent.life += self.strength
-        let message = "\(self.name) a attaqué \(opponent.name) et lui a ôté \(self.strength) points de vie. Il lui reste à présent \(opponent.life)"
+
+        opponent.life -= self.strength
+        let message = "\(self.name) a attaqué \(opponent.name) et lui a ôté \(self.strength) points de vie. Il lui reste à présent \(opponent.life) \n\n"
         return message
     }
 }

@@ -174,13 +174,43 @@ class Game {
                 attackAction(team: team)
             }
         }
-        
+        //Manage the Magus case
+        var message = ""
         if (selectedAttacker!.life != 0) {
-            print("fonction attaquer")
+            var competitorTeamIndex = 1
+            if (team.teamNumber == 1) {competitorTeamIndex = 0}
+            
+            let competitorTeam = teamList[competitorTeamIndex]
+            
+            print("Quel personnage de ton adversaire souhaites tu attaquer ?")
+            
+            var selectedVictim: Character!
+            print("\n"
+                + "\n1 \(printCompetitorsAlive(team: competitorTeam, index: 0))"
+                + "\n2 \(printCompetitorsAlive(team: competitorTeam, index: 1))"
+                + "\n3 \(printCompetitorsAlive(team: competitorTeam, index: 2))"
+            )
+            
+            if let victim = readLine() {
+                switch victim {
+                case "1":
+                    selectedVictim = competitorTeam.teammate1
+                case "2":
+                    selectedVictim = competitorTeam.teammate2
+                case "3":
+                    selectedVictim = competitorTeam.teammate3
+                default:
+                    attackAction(team: team)
+                }
+            }
+            
+            message = selectedAttacker.attack(opponent: selectedVictim)
         } else {
             print("désolé le personnage n'a plus de vie merci de choisir un personne vivant")
             attackAction(team: team)
         }
+        
+        print(message)
     }
 
     func printCharacterAvailableToAttack(team: Team, index: Int) -> String {
@@ -193,7 +223,13 @@ class Game {
         return message!
     }
     
-    
-    
-    
+    func printCompetitorsAlive(team: Team, index: Int) -> String {
+        var message: String?
+        if (team.teammateList[index].life != 0) {
+            message = "\(team.teammateList[index].name) dispose de \(team.teammateList[index].life) points de vie"
+        } else {
+            message = "\(team.teammateList[index].name) est mort et n'est plus disponible"
+        }
+        return message!
+    }
 }
