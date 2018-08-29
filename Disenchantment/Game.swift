@@ -81,7 +81,7 @@ class Game {
     
     func isNameAvailable(characterName: String) -> Bool {
         var nameAvailable = true
-        print("teammates count \(newGame.characterList.count)")
+
         if self.characterList.count != 0 {
             for teammate in self.characterList {
                 if teammate.name == characterName {
@@ -178,10 +178,8 @@ class Game {
         var message = ""
         if (selectedAttacker!.life != 0) {
             var competitorTeamIndex = 1
-            print("team.teamNumber \(team.teamNumber)")
             if (team.teamNumber == 2) {competitorTeamIndex = 0}
             
-            print("competitorTeamIndex \(competitorTeamIndex)")
             let competitorTeam = teamList[competitorTeamIndex]
 
             print("Quel personnage de ton adversaire souhaites tu attaquer ?")
