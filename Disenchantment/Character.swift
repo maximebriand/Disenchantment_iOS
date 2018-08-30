@@ -38,7 +38,7 @@ class Character {
 
         var message = ""
         opponent.life -= self.strength
-        if (opponent.life < 0) {
+        if (opponent.life < 0 || opponent.life == 0) {
             opponent.life = 0
             opponent.isDead = true
             message = "\(self.name) a attaqué \(opponent.name) et l'a envoyé outre tombe. \n\n"
@@ -57,7 +57,7 @@ class Character {
 
 class Fighter : Character {
     init(name: String) {
-        super.init(name: name, life: 100, strength: 30, weapon: WeaponEnum.sword, type: .Fighter)
+        super.init(name: name, life: 100, strength: 300, weapon: WeaponEnum.sword, type: .Fighter)
     }
     
 }

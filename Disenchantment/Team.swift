@@ -24,9 +24,7 @@ class Team {
         self.teammate3 = teammate3
         self.teammateList = [teammate1, teammate2, teammate3]
     }
-    
-  
-    
+
     
     
     

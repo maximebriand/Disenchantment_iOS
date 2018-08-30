@@ -64,10 +64,13 @@ class Game {
         //attaquer seulement avec une équipe à la fois
         var playingTeam = 0
         var i = 0
-        repeat {
+        
+        while (teamList[0].hasLose == false && teamList[1].hasLose == false) {
             
-            attackAction(team: self.teamList[playingTeam])
-
+            self.attackAction(team: self.teamList[playingTeam])
+            
+            self.isAWinner()
+            
             //change the team who will play in the next batch of the loop
             if (playingTeam == 0) {
                 playingTeam = 1
@@ -75,7 +78,11 @@ class Game {
                 playingTeam = 0
             }
             i += 1
-        } while (!teamList[0].hasLose && !teamList[1].hasLose)
+        }
+        
+        let winnerTeam = self.winnerTeam()
+        
+        print("Bravo \(winnerTeam.name!) tu as gagné ! ")
     }
     
     func isNameAvailable(characterName: String) -> Bool {
@@ -261,5 +268,24 @@ class Game {
             message = "\(team.teammateList[index].name) est mort et n'est plus disponible"
         }
         return message!
+    }
+    
+    func isAWinner() {
+        for i in  0...1  {
+            if (teamList[i].teammate1.isDead == true && teamList[i].teammate2.isDead == true && teamList[i].teammate3.isDead == true )
+            {
+                teamList[i].hasLose = true
+            }
+        }
+    }
+    
+    func winnerTeam() -> Team {
+        var winner: Team?
+        for i in  0...1  {
+            if (teamList[i].hasLose == true) {
+                winner = teamList[i]
+            }
+        }
+        return winner!
     }
 }
