@@ -12,12 +12,14 @@ class Character {
     var life: Int
     var strength: Int
     var weapon: Weapon
+    var type: CharacterEnum
     var isDead = false
     
-    init (name: String, life: Int, strength: Int, weapon: WeaponEnum){
+    init (name: String, life: Int, strength: Int, weapon: WeaponEnum, type: CharacterEnum){
         self.name = name
         self.life = life
         self.strength = strength
+        self.type = type
         
         switch weapon {
         case WeaponEnum.sword:
@@ -49,14 +51,14 @@ class Character {
 
 class Fighter : Character {
     init(name: String) {
-        super.init(name: name, life: 100, strength: 30, weapon: WeaponEnum.sword)
+        super.init(name: name, life: 100, strength: 30, weapon: WeaponEnum.sword, type: .Fighter)
     }
     
 }
 
 class Magus : Character {
     init(name: String) {
-        super.init(name: name, life: 70, strength: 25, weapon: WeaponEnum.wand)
+        super.init(name: name, life: 70, strength: 25, weapon: WeaponEnum.wand, type: .Magus)
     }
     
     public override func attack(opponent: Character) -> String {
@@ -74,14 +76,14 @@ class Magus : Character {
 
 class Colossus : Character {
     init(name: String) {
-        super.init(name: name, life: 300, strength: 10, weapon: WeaponEnum.none)
+        super.init(name: name, life: 300, strength: 10, weapon: WeaponEnum.none, type: .Colossus)
     }
     
 }
 
 class Dward : Character {
     init(name: String) {
-        super.init(name: name, life: 80, strength: 45, weapon: WeaponEnum.ax)
+        super.init(name: name, life: 80, strength: 45, weapon: WeaponEnum.ax, type: .Dward)
     }
     
 }
