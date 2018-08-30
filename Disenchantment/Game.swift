@@ -81,14 +81,9 @@ class Game {
     
     func isNameAvailable(characterName: String) -> Bool {
         var nameAvailable = true
-
-        if self.characterList.count != 0 {
-            for teammate in self.characterList {
-                if teammate.name == characterName {
-                    nameAvailable = false
-                }
-                return nameAvailable
-            }
+        
+        if (characterList.contains(where: {$0.name == characterName})) {
+            nameAvailable = false
         }
         return nameAvailable
     }
