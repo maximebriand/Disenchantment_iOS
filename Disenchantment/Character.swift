@@ -47,6 +47,12 @@ class Character {
         
         return message
     }
+    
+    public func beTreated(teammate: Character) -> String{
+        self.life += teammate.strength
+        let message = "\(teammate.name) a soigné \(self.name) et lui a restauré \(teammate.strength) points de vie. Il lui reste à présent \(self.life)\n\n"
+        return message
+    }
 }
 
 class Fighter : Character {
@@ -63,12 +69,6 @@ class Magus : Character {
     
     public override func attack(opponent: Character) -> String {
         let message = "Désolé mais est un mage, il ne peut pas attaquer. Mais il peut soigner l'un de ses amis."
-        return message
-    }
-    
-    public func treat(teammate: Character) -> String{
-        teammate.life += self.strength
-        let message = "\(self.name) a soigné \(teammate.name) et lui a restauré \(self.strength) points de vie. Il lui reste à présent \(teammate.life)"
         return message
     }
     

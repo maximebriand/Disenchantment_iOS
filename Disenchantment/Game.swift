@@ -168,9 +168,10 @@ class Game {
                 attackAction(team: team)
             }
         }
-        //Manage the Magus case
+
         var message = ""
-        if (selectedAttacker.isDead == false) {
+        //if the character has life and is not a magus
+        if (selectedAttacker.isDead == false && selectedAttacker.type != .Magus) {
             var competitorTeamIndex = 1
             if (team.teamNumber == 2) {competitorTeamIndex = 0}
             
@@ -204,7 +205,37 @@ class Game {
                 print("Désolé mais \(selectedVictim.name) est mort, merci de respecter sa dépouille.")
                 attackAction(team: team)
             }
-        } else {
+          //if it is a magus
+        } else if (selectedAttacker.isDead == false && selectedAttacker.type == .Magus) {
+            var selectedTeammate: Character!
+            
+            print("Quel personnage souhaites tu soigner ?\n"
+                + "\n1 \(printCompetitorsAlive(team: team, index: 0))"
+                + "\n2 \(printCompetitorsAlive(team: team, index: 1))"
+                + "\n3 \(printCompetitorsAlive(team: team, index: 2))"
+            )
+            
+            if let patient = readLine() {
+                switch patient {
+                case "1":
+                    selectedTeammate = team.teammate1
+                case "2":
+                    selectedTeammate = team.teammate2
+                case "3":
+                    selectedTeammate = team.teammate3
+                default:
+                    attackAction(team: team)
+                }
+            }
+            
+            if (selectedTeammate.isDead == false) {
+                message = selectedTeammate.beTreated(teammate: selectedAttacker)
+            } else {
+                print("Désolé mais \(selectedTeammate.name) est mort, merci de respecter sa dépouille.")
+                attackAction(team: team)
+            }
+        }
+        else {
             print("désolé le personnage n'a plus de vie merci de choisir un personne vivant")
             attackAction(team: team)
         }
@@ -215,7 +246,7 @@ class Game {
     func printCharacterAvailableToAttack(team: Team, index: Int) -> String {
         var message: String?
         if (team.teammateList[index].life != 0) {
-            message = "\(team.teammateList[index].name) dispose de \(team.teammateList[index].strength) points d'attaque"
+            message = "\(team.teammateList[index].name), un \(team.teammateList[index].type), dispose de \(team.teammateList[index].strength) points d'attaque"
         } else {
             message = "\(team.teammateList[index].name) est mort et n'est plus disponible"
         }
@@ -225,7 +256,7 @@ class Game {
     func printCompetitorsAlive(team: Team, index: Int) -> String {
         var message: String?
         if (team.teammateList[index].life != 0) {
-            message = "\(team.teammateList[index].name) dispose de \(team.teammateList[index].life) points de vie"
+            message = "\(team.teammateList[index].name), un \(team.teammateList[index].type),  dispose de \(team.teammateList[index].life) points de vie"
         } else {
             message = "\(team.teammateList[index].name) est mort et n'est plus disponible"
         }
