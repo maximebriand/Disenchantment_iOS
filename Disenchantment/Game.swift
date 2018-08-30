@@ -76,7 +76,6 @@ class Game {
             }
             i += 1
         } while (!teamList[0].hasLose && !teamList[1].hasLose)
-        
     }
     
     func isNameAvailable(characterName: String) -> Bool {
@@ -171,7 +170,7 @@ class Game {
         }
         //Manage the Magus case
         var message = ""
-        if (selectedAttacker!.life != 0) {
+        if (selectedAttacker.isDead == false) {
             var competitorTeamIndex = 1
             if (team.teamNumber == 2) {competitorTeamIndex = 0}
             
@@ -199,7 +198,12 @@ class Game {
                 }
             }
             
-            message = selectedAttacker.attack(opponent: selectedVictim)
+            if (selectedVictim.isDead == false) {
+                message = selectedAttacker.attack(opponent: selectedVictim)
+            } else {
+                print("Désolé mais \(selectedVictim.name) est mort, merci de respecter sa dépouille.")
+                attackAction(team: team)
+            }
         } else {
             print("désolé le personnage n'a plus de vie merci de choisir un personne vivant")
             attackAction(team: team)

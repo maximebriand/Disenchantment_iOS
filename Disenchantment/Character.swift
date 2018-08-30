@@ -34,8 +34,15 @@ class Character {
     
     public func attack(opponent: Character) -> String{
 
+        var message = ""
         opponent.life -= self.strength
-        let message = "\(self.name) a attaqué \(opponent.name) et lui a ôté \(self.strength) points de vie. Il lui reste à présent \(opponent.life) \n\n"
+        if (opponent.life < 0) {
+            opponent.life = 0
+            opponent.isDead = true
+            message = "\(self.name) a attaqué \(opponent.name) et l'a envoyé outre tombe. \n\n"
+        }
+        message = "\(self.name) a attaqué \(opponent.name) et lui a ôté \(self.strength) points de vie. Il lui reste à présent \(opponent.life) \n\n"
+        
         return message
     }
 }
