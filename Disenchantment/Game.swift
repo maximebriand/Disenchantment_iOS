@@ -16,73 +16,76 @@ class Game {
     init(numberOfPlayers: Int) {
         self.numberOfPlayers = numberOfPlayers
     }
-    
-    func createTeam(teamNumber: Int) -> Team {
-        //var teamName: String
 
+    func startGame() {
+        print("Les Règles sont les suivantes");
+        print("Le joueur numéro 1 va tout d'abord choisir un nom d'équipe. Une fois cela fait il va choisir le type de personnage qu'il souhaite avoir dans son équipe. Chaque équipe doit se constituer de 3 personnages. Pas de restriction quant aux personnage.")
+        for i in 1...self.numberOfPlayers! {
+            let team = self.setupTeam(teamNumber: i)
+            self.teamList.append(team)
+        }
+        attackTeamByTeam()
+        let winnerTeam = self.winnerTeam()
+        print("Bravo \(winnerTeam.name!) tu as gagné ! ")
+    }
+    
+    func printStartingText() {
+        print("\n  • Le Combattant est un attaquant classique, avec son épée il saura terrasser chacun de ses adversaire.")
+        print("  • Le mage est pacificiste, il saura soigner presque toutes les blessures de ses compagnons d'armes.")
+        print("  • Le Colosse, est certe lent et peu puissant, mais il est capable de resister à toutes les attaques sans broncher.")
+        print("  • Le Nain, cet être est aussi petit qu'il est raleur, mais ne le sous-estimé pas, un coup de hache bien placé et votre vie pourrait être mise à mal.\n" )
+    }
+    
+    func setupTeam(teamNumber: Int) -> Team {
         print("Personnage \(teamNumber) quel est le nom de votre équipe ?")
-        
-        
         if let teamName = readLine() {
-            print("\n  • Le Combattant est un attaquant classique, avec son épée il saura terrasser chacun de ses adversaire.")
-            print("  • Le mage est pacificiste, il saura soigner presque toutes les blessures de ses compagnons d'armes.")
-            print("  • Le Colosse, est certe lent et peu puissant, mais il est capable de resister à toutes les attaques sans broncher.")
-            print("  • Le Nain, cet être est aussi petit qu'il est raleur, mais ne le sous-estimé pas, un coup de hache bien placé et votre vie pourrait être mise à mal.\n" )
-            
+            printStartingText()
             for _ in 0...2 { //depends of number of teammates, might be changed by a parameter set with the init.
                 
                 let characterType = self.selectCharacter()
                 let teammate = self.createCharacter(characterType: characterType)
                 newGame.characterList.append(teammate)
             }
-            
             //create the object with init
-            let teamIndex = (teamNumber - 1) *  3 // use it to have a multiple of 3 because there are 3 characters in teams.
-            let team = Team(
-                teamName: teamName,
-                teamNumber: teamNumber,
-                teammate1: characterList[0 + teamIndex],
-                teammate2: characterList[1 + teamIndex],
-                teammate3: characterList[2 + teamIndex]
-            )
-            
+            let team = createTeam(teamNumber: teamNumber, teamName: teamName)
             return team
         }
-        
-        return teamList[teamNumber - 1]
-        
-    
+        return self.teamList[teamNumber - 1]
     }
-    func startGame() {
-        print("Les Règles sont les suivantes");
-        print("Le joueur numéro 1 va tout d'abord choisir un nom d'équipe. Une fois cela fait il va choisir le type de personnage qu'il souhaite avoir dans son équipe. Chaque équipe doit se constituer de 3 personnages. Pas de restriction quant aux personnage.")
-        for i in 1...self.numberOfPlayers! {
-            let team = self.createTeam(teamNumber: i)
-            teamList.append(team)
+    
+    func changeTeam(indexTeam: Int) -> Int {
+        //change the team who will play in the next batch of the loop
+        var playingTeam = indexTeam
+
+        if (playingTeam == 0) {
+            playingTeam = 1
+        } else {
+            playingTeam = 0
         }
-        
-        //attaquer seulement avec une équipe à la fois
+        return playingTeam
+    }
+    
+    func attackTeamByTeam() {
         var playingTeam = 0
-        var i = 0
-        
-        while (teamList[0].hasLose == false && teamList[1].hasLose == false) {
-            
+   
+        while (self.teamList[0].hasLose == false && self.teamList[1].hasLose == false){
             self.attackAction(team: self.teamList[playingTeam])
-            
             self.isAWinner()
             
-            //change the team who will play in the next batch of the loop
-            if (playingTeam == 0) {
-                playingTeam = 1
-            } else {
-                playingTeam = 0
-            }
-            i += 1
+            playingTeam = changeTeam(indexTeam: playingTeam)
         }
-        
-        let winnerTeam = self.winnerTeam()
-        
-        print("Bravo \(winnerTeam.name!) tu as gagné ! ")
+    }
+    
+    func createTeam (teamNumber: Int, teamName: String) -> Team {
+        let teamIndex = (teamNumber - 1) *  3 // use it to have a multiple of 3 because there are 3 characters in teams.
+        let team = Team(
+            teamName: teamName,
+            teamNumber: teamNumber,
+            teammate1: self.characterList[0 + teamIndex],
+            teammate2: self.characterList[1 + teamIndex],
+            teammate3: self.characterList[2 + teamIndex]
+        )
+        return team
     }
     
     func isNameAvailable(characterName: String) -> Bool {
@@ -272,9 +275,9 @@ class Game {
     
     func isAWinner() {
         for i in  0...1  {
-            if (teamList[i].teammate1.isDead == true && teamList[i].teammate2.isDead == true && teamList[i].teammate3.isDead == true )
+            if (self.teamList[i].teammate1.isDead == true && self.teamList[i].teammate2.isDead == true && self.teamList[i].teammate3.isDead == true )
             {
-                teamList[i].hasLose = true
+                self.teamList[i].hasLose = true
             }
         }
     }
@@ -282,8 +285,9 @@ class Game {
     func winnerTeam() -> Team {
         var winner: Team?
         for i in  0...1  {
-            if (teamList[i].hasLose == true) {
-                winner = teamList[i]
+            if (self.teamList[i].hasLose == true) {
+                
+                winner = self.teamList[changeTeam(indexTeam: i)]
             }
         }
         return winner!
