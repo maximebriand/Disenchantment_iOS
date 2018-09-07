@@ -155,29 +155,30 @@ class Game {
         return characterType!
     }
     
-    
-    func attackAction(team: Team) {
-        print("\(team.name ?? "C'est") à toi d'jouer, choisis un de tes personnages.")
-        
-        var selectedAttacker: Character!
+    func selectACharacter(team: Team, action: printAction) -> Character {
+        var selectedCharacter: Character!
         print("\n"
-            + "\n1 \(printCharacterAvailableToAttack(team: team, index: 0))"
-            + "\n2 \(printCharacterAvailableToAttack(team: team, index: 1))"
-            + "\n3 \(printCharacterAvailableToAttack(team: team, index: 2))"
+            + "\n1 \(selectPrintAction(team: team, index: 0, action: action))"
+            + "\n2 \(selectPrintAction(team: team, index: 1, action: action))"
+            + "\n3 \(selectPrintAction(team: team, index: 2, action: action))"
         )
         
-        if let attacker = readLine() {
-            switch attacker {
+        if let target = readLine() {
+            switch target {
             case "1":
-                selectedAttacker = team.teammate1
+                selectedCharacter = team.teammate1
             case "2":
-                selectedAttacker = team.teammate2
+                selectedCharacter = team.teammate2
             case "3":
-                selectedAttacker = team.teammate3
+                selectedCharacter = team.teammate3
             default:
                 attackAction(team: team)
             }
         }
+        return selectedCharacter
+    }
+    func attackAction(team: Team) {
+        let selectedAttacker = selectAttacker(team: team)
 
         var message = ""
         //if the character has life and is not a magus
@@ -189,25 +190,7 @@ class Game {
 
             print("Quel personnage de ton adversaire souhaites tu attaquer ?")
             
-            var selectedVictim: Character!
-            print("\n"
-                + "\n1 \(printCompetitorsAlive(team: competitorTeam, index: 0))"
-                + "\n2 \(printCompetitorsAlive(team: competitorTeam, index: 1))"
-                + "\n3 \(printCompetitorsAlive(team: competitorTeam, index: 2))"
-            )
-            
-            if let victim = readLine() {
-                switch victim {
-                case "1":
-                    selectedVictim = competitorTeam.teammate1
-                case "2":
-                    selectedVictim = competitorTeam.teammate2
-                case "3":
-                    selectedVictim = competitorTeam.teammate3
-                default:
-                    attackAction(team: team)
-                }
-            }
+            let selectedVictim = selectACharacter(team: competitorTeam, action: .competitorsAlive)
             
             if (selectedVictim.isDead == false) {
                 message = selectedAttacker.attack(opponent: selectedVictim)
@@ -253,6 +236,46 @@ class Game {
         print(message)
     }
 
+    func selectAttacker(team: Team) -> Character {
+        print("\(team.name ?? "C'est") à toi d'jouer, choisis un de tes personnages.")
+        
+        var selectedAttacker: Character!
+        print("\n"
+            + "\n1 \(printCharacterAvailableToAttack(team: team, index: 0))"
+            + "\n2 \(printCharacterAvailableToAttack(team: team, index: 1))"
+            + "\n3 \(printCharacterAvailableToAttack(team: team, index: 2))"
+        )
+        
+        if let attacker = readLine() {
+            switch attacker {
+            case "1":
+                selectedAttacker = team.teammate1
+            case "2":
+                selectedAttacker = team.teammate2
+            case "3":
+                selectedAttacker = team.teammate3
+            default:
+                attackAction(team: team)
+            }
+        }
+        return selectedAttacker
+    }
+    
+    func selectPrintAction(team: Team, index: Int, action: printAction) -> String {
+        var message: String
+        switch action {
+        case .availableToAttack:
+            message = printCharacterAvailableToAttack(team: team, index: index)
+        case .competitorsAlive:
+            message = printCompetitorsAlive(team: team, index: index)
+        }
+        return message
+    }
+    
+    enum printAction {
+        case availableToAttack, competitorsAlive
+    }
+    
     func printCharacterAvailableToAttack(team: Team, index: Int) -> String {
         var message: String?
         if (team.teammateList[index].life != 0) {
