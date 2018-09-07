@@ -177,63 +177,58 @@ class Game {
         }
         return selectedCharacter
     }
+    
     func attackAction(team: Team) {
         let selectedAttacker = selectAttacker(team: team)
-
-        var message = ""
+        var message: String?
         //if the character has life and is not a magus
         if (selectedAttacker.isDead == false && selectedAttacker.type != .Magus) {
-            var competitorTeamIndex = 1
-            if (team.teamNumber == 2) {competitorTeamIndex = 0}
-            
-            let competitorTeam = teamList[competitorTeamIndex]
-
-            print("Quel personnage de ton adversaire souhaites tu attaquer ?")
-            
-            let selectedVictim = selectACharacter(team: competitorTeam, action: .competitorsAlive)
-            
-            if (selectedVictim.isDead == false) {
-                message = selectedAttacker.attack(opponent: selectedVictim)
-            } else {
-                print("Désolé mais \(selectedVictim.name) est mort, merci de respecter sa dépouille.")
-                attackAction(team: team)
-            }
+            message = characterAttackAction(team: team, selectedAttacker: selectedAttacker)
           //if it is a magus
         } else if (selectedAttacker.isDead == false && selectedAttacker.type == .Magus) {
-            var selectedTeammate: Character!
-            
-            print("Quel personnage souhaites tu soigner ?\n"
-                + "\n1 \(printCompetitorsAlive(team: team, index: 0))"
-                + "\n2 \(printCompetitorsAlive(team: team, index: 1))"
-                + "\n3 \(printCompetitorsAlive(team: team, index: 2))"
-            )
-            
-            if let patient = readLine() {
-                switch patient {
-                case "1":
-                    selectedTeammate = team.teammate1
-                case "2":
-                    selectedTeammate = team.teammate2
-                case "3":
-                    selectedTeammate = team.teammate3
-                default:
-                    attackAction(team: team)
-                }
-            }
-            
-            if (selectedTeammate.isDead == false) {
-                message = selectedTeammate.beTreated(teammate: selectedAttacker)
-            } else {
-                print("Désolé mais \(selectedTeammate.name) est mort, merci de respecter sa dépouille.")
-                attackAction(team: team)
-            }
+            message = magusAttackAction(team: team, selectedAttacker: selectedAttacker)
         }
         else {
             print("désolé le personnage n'a plus de vie merci de choisir un personne vivant")
             attackAction(team: team)
         }
+        print(message!)
+    }
+    
+    
+    func characterAttackAction(team: Team, selectedAttacker: Character) -> String{
+        var competitorTeamIndex = 1
+        if (team.teamNumber == 2) {competitorTeamIndex = 0}
+        let competitorTeam = teamList[competitorTeamIndex]
+        print("Quel personnage de ton adversaire souhaites tu attaquer ?")
+        let selectedVictim = selectACharacter(team: competitorTeam, action: .competitorsAlive)
+        let message = isSelectedVictimAlive(selectedVictim: selectedVictim, selectedAttacker: selectedAttacker, team: team)
+        return message
+    }
+    
+    func magusAttackAction(team: Team, selectedAttacker: Character) -> String{
+        var message: String?
+        let selectedTeammate = selectACharacter(team: team, action: .competitorsAlive)
+        if (selectedTeammate.isDead == false) {
+            message = selectedTeammate.beTreated(teammate: selectedAttacker)
+        } else {
+            print("Désolé mais \(selectedTeammate.name) est mort, merci de respecter sa dépouille.")
+            attackAction(team: team)
+        }
         
-        print(message)
+        return message!
+    }
+    
+    func isSelectedVictimAlive(selectedVictim: Character, selectedAttacker: Character, team: Team) -> String{
+        var message: String?
+        if (selectedVictim.isDead == false) {
+            message = selectedAttacker.attack(opponent: selectedVictim)
+        } else {
+            print("Désolé mais \(selectedVictim.name) est mort, merci de respecter sa dépouille.")
+            attackAction(team: team)
+        }
+        
+        return message!
     }
 
     func selectAttacker(team: Team) -> Character {
@@ -277,23 +272,23 @@ class Game {
     }
     
     func printCharacterAvailableToAttack(team: Team, index: Int) -> String {
-        var message: String?
+        var message: String
         if (team.teammateList[index].life != 0) {
             message = "\(team.teammateList[index].name), un \(team.teammateList[index].type), dispose de \(team.teammateList[index].strength) points d'attaque"
         } else {
             message = "\(team.teammateList[index].name) est mort et n'est plus disponible"
         }
-        return message!
+        return message
     }
     
     func printCompetitorsAlive(team: Team, index: Int) -> String {
-        var message: String?
+        var message: String
         if (team.teammateList[index].life != 0) {
             message = "\(team.teammateList[index].name), un \(team.teammateList[index].type),  dispose de \(team.teammateList[index].life) points de vie"
         } else {
             message = "\(team.teammateList[index].name) est mort et n'est plus disponible"
         }
-        return message!
+        return message
     }
     
     func isAWinner() {
